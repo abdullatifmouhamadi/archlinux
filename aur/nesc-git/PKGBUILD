@@ -1,0 +1,36 @@
+# Maintainer: ABDULLATIF Mouhamadi <bourou01dev@gmail.com>
+pkgname=nesc-git
+pkgver=r818.ce8484f
+pkgrel=1
+pkgdesc="A extension to the C programming language designed to embody the structuring concepts and execution model of TinyOS."
+arch=('i686' 'x86_64')
+license=('GPL2')
+options=(!libtool !buildflags)
+url="https://github.com/tinyos/nesc/"
+depends=('emacs' 'gperf' 'bison' 'flex' 'java-environment')
+makedepends=('automake' 'autoconf')
+provides=('nesc')
+conflicts=('nesc')
+repo="nesc"
+source=(git://github.com/tinyos/${repo}.git)
+md5sums=('SKIP')
+
+
+pkgver() {
+  cd "$srcdir/$repo"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/$repo"
+  #export CC=gcc-4.8
+  #export CXX=g++-4.8
+  ./Bootstrap
+  ./configure --prefix=/usr/
+  make || return 1
+}
+
+package() {
+  cd "$srcdir/$repo"
+  make DESTDIR="$pkgdir/" install || return 1
+}

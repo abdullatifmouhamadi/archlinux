@@ -1,0 +1,12 @@
+--- support/make/extras/sim.extra	2017-09-19 23:54:14.972385248 +0200
++++ support/make/extras/sim.extra.new	2017-09-19 23:54:00.899279000 +0200
+@@ -1,7 +1,7 @@
+ #-*-Makefile-*- vim:syntax=make
+ 
+-export GCC=gcc
+-GPP=g++
++export GCC=gcc-4.8
++GPP=g++-4.8
+ OPTFLAGS = -g -O0
+ LIBS = -lm -lstdc++
+ PFLAGS += -DTOSSIM -fnesc-nido-tosnodes=1000 -fnesc-simulate -fnesc-nido-motenumber='sim_node\(\)' -fnesc-gcc=$(GCC)
