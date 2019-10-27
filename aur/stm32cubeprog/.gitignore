@@ -3,3 +3,6 @@ src/
 
 *.zip
 *.pkg.tar.xz
+
+en.stm32cubeprog
+
