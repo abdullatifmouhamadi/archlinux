@@ -1,0 +1,11 @@
+[Unit]
+Description=Web tool for database management
+
+[Service]
+Type=simple
+ExecStart=/srv/http/OmniDB/run.sh
+User=abdullatif
+Group=wheel
+
+[Install]
+WantedBy=multi-user.target

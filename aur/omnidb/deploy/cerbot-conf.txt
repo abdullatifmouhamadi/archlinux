@@ -1,0 +1,4 @@
+sudo certbot certonly --email bourou01@gmail.com --webroot -w /var/lib/letsencrypt/ -d omnidb.maoredev.fr,www.omnidb.maoredev.fr
+
+
+
