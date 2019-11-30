@@ -12,6 +12,11 @@ find /usr/include/ -iname "*stdarg*"
 
 # usage
 
-git clone https://github.com/tp-freeforall/prod
+git clone https://github.com/tp-freeforall/prod src/prod
 chmod +x archlinux_build_patch.sh
 ./archlinux_build_patch.sh
+
+
+./Bootstrap
+./configure
+make
