@@ -1,0 +1,41 @@
+# Maintainer: ABDULLATIF Mouhamadi <bourou01dev@gmail.com>
+pkgname=tinyprod-git
+pkgver=r4565.5bc2b09b
+pkgrel=1
+pkgdesc="Small operating system for sensor motes, embedded devices"
+arch=(any)
+license=('GPL')
+options=(!libtool)
+url="http://www.tinyos.net/"
+depends=('glibc' 'nesc')
+provides=('tinyprod')
+conflicts=('tinyprod')
+optdepends=('jdk: for building java tools for tinyos applications'
+	    'jre: for using java tools'
+	    'avr-libc-tinyos: to build for atmel based platforms'
+	    'avrdude: to installing for atmel based platform (which is not supported by uisp, like iris)'
+	    'binutils-msp430: to build for msp430 based platforms'
+	    'gcc-msp430: to build for msp430 based platforms'
+	    'msp430-libc: to build for msp430 based platforms')
+
+repo="prod"
+source=(git://github.com/tp-freeforall/${repo}.git force-gcc48.patch)
+md5sums=('SKIP' '371fc3cc8c490df3a2aa3ac405b81e96')
+
+pkgver() {
+  cd "$srcdir/$repo"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+	cd "$srcdir/$repo"
+	patch -p0 -i "${srcdir}/force-gcc48.patch"
+
+
+}
+
+package() {
+  install -d ${pkgdir}/opt
+  cp -aR ${srcdir}/$repo/ ${pkgdir}/opt
+}
+

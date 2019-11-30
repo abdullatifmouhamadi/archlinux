@@ -1,0 +1,6 @@
+pkg/
+src/
+prod/
+*.zip
+*.pkg.tar.xz
+
