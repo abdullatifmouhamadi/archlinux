@@ -10,4 +10,8 @@ find /usr/include/ -iname "*stdarg*"
 
 
 
+# usage
 
+git clone https://github.com/tp-freeforall/prod
+chmod +x archlinux_build_patch.sh
+./archlinux_build_patch.sh
