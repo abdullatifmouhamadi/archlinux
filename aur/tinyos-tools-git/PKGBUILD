@@ -1,0 +1,84 @@
+# Maintainer: ABDULLATIF Mouhamadi <bourou01dev@gmail.com>
+pkgname=tinyos-tools-git
+pkgver=r3830.68a6b7d5
+pkgrel=1
+pkgdesc="Development-tools for TinyOS"
+arch=('i686' 'x86_64')
+license=('GPL')
+options=(!libtool)
+url="http://www.tinyos.net/"
+depends=('python2' 'perl' 'bash' 'nesc' 'java-runtime')
+makedepends=('java-environment' 'which')
+provides=('tinyos-tools')
+conflicts=('tinyos-tools')
+repo="tinyos-main"
+source=("git://github.com/tinyos/${repo}.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$repo"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+
+prepare() {
+	cd ${srcdir}/${repo}
+	
+	if [ "${CARCH}" == "x86_64" ]; then
+		ARCH="x86-64"
+	else
+		ARCH="i686"
+	fi
+
+	
+	#export CFLAGS='-march='$ARCH' -mtune=generic -O2 -pipe'
+  	#export CXXFLAGS=${CFLAGS}
+
+	# Add build flags to nescc-mig and nescc-ng ...
+	GCC_INCLUDE_PATH=" -I/$(gcc -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
+
+	CFLAGS+=$GCC_INCLUDE_PATH
+	CFLAGS+=" "
+	CFLAGS+=-I/usr/include
+
+	base=${srcdir}/${repo}
+
+	files=(${base}/tools/tinyos/c/sf/Makefile.am ${base}/tools/tinyos/java/net/tinyos/message/Makefile.am ${base}/tools/tinyos/java/net/tinyos/packet/Makefile.am ${base}/tools/tinyos/java/net/tinyos/tools/Makefile.am ${base}/tools/tinyos/python/message/Makefile.am ${base}/tools/tinyos/python/packet/Makefile.am)
+
+	CFLAGS=$(echo $CFLAGS | sed -e 's/[]\/$*.^|[]/\\&/g')
+
+	echo $CFLAGS
+
+	for i in ${files[@]}; do
+		sed  -i '/nescc-/s/$/ '"$CFLAGS"'/' ${i}
+	done
+
+}
+
+build() {
+  cd ${srcdir}/${repo}/tools/
+
+  #export CC=gcc-4.8
+  #export CXX=g++-4.8
+  ./Bootstrap
+  ./configure --prefix=/usr
+
+
+  make || return 1
+}
+
+package() {
+  cd "${srcdir}/${repo}/tools/"
+  make DESTDIR="${pkgdir}/" install || return 1
+}
+
+
+
+
+
+
+
+
+
+
+
