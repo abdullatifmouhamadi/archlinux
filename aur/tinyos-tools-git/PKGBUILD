@@ -7,7 +7,7 @@ arch=('i686' 'x86_64')
 license=('GPL')
 options=(!libtool)
 url="http://www.tinyos.net/"
-depends=('python2' 'perl' 'bash' 'nesc' 'java-runtime')
+depends=('python2' 'perl' 'bash' 'nesc' 'java-runtime' 'gcc49')
 makedepends=('java-environment' 'which')
 provides=('tinyos-tools')
 conflicts=('tinyos-tools')
@@ -36,6 +36,7 @@ prepare() {
 
 	# Add build flags to nescc-mig and nescc-ng ...
 	GCC_INCLUDE_PATH=" -I/$(gcc -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
+	#GCC_INCLUDE_PATH=" -I/$(gcc-4.9 -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
 
 	CFLAGS+=$GCC_INCLUDE_PATH
 	CFLAGS+=" "
@@ -58,8 +59,8 @@ prepare() {
 build() {
   cd ${srcdir}/${repo}/tools/
 
-  #export CC=gcc-4.8
-  #export CXX=g++-4.8
+  #export CC=gcc-4.9
+  #export CXX=g++-4.9
   ./Bootstrap
   ./configure --prefix=/usr
 
