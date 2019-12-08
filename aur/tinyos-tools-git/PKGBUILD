@@ -35,8 +35,8 @@ prepare() {
   	#export CXXFLAGS=${CFLAGS}
 
 	# Add build flags to nescc-mig and nescc-ng ...
-	GCC_INCLUDE_PATH=" -I/$(gcc -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
-	#GCC_INCLUDE_PATH=" -I/$(gcc-4.9 -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
+	#GCC_INCLUDE_PATH=" -I/$(gcc -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
+	GCC_INCLUDE_PATH=" -I/$(gcc-4.9 -print-search-dirs | sed -n '1p' | sed 's:[^/]*/\(.*\):\1:')include"
 
 	CFLAGS+=$GCC_INCLUDE_PATH
 	CFLAGS+=" "
