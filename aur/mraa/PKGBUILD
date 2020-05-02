@@ -9,7 +9,7 @@ optdepends=('python: for Python support' 'python2: for Python2 support')
 url="https://github.com/intel-iot-devkit/mraa"
 license=('MIT')
 #arch=('x86_64' 'i686')
-arch=('armv6h','armv7h')
+arch=('armv6h' 'armv7h')
 source=(git+https://github.com/intel-iot-devkit/mraa.git#tag=v$pkgver)
 md5sums=('SKIP')
 
