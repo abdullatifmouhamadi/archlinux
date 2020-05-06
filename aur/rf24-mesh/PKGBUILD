@@ -6,6 +6,7 @@ pkgdesc='Linux support for RF24Mesh radio modules'
 arch=(any)
 url='http://tmrh20.github.io/RF24Mesh/'
 license=('GPL2')
+depends=('rf24-network')
 source=('https://github.com/nRF24/RF24Mesh/archive/1.0.7.tar.gz')
 sha256sums=('bb7e269ad46ff8c8145a3494994c61e5b0e523d487ea97b5b94e2fef4b677446')
 depends=('rf24-network')
