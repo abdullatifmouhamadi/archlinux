@@ -1,0 +1,25 @@
+# Maintainer:   ABDULLATIF Mouhamadi <bourou01dev[AT]gmail[DOT]fr>
+pkgname=rf24-gateway
+pkgver='git'
+pkgrel=0
+pkgdesc='Linux support for RF24Gateway radio modules'
+arch=(any)
+url='http://tmrh20.github.io/RF24Gateway/'
+license=('GPL2')
+depends=('rf24')
+repo="RF24Gateway"
+source=(git://github.com/nRF24/${repo}.git)
+sha256sums=('SKIP')
+
+build() {
+  cd "$srcdir/$repo"
+  sed -i -e "s/@ldconfig/@\$(LDCONFIG)/g" Makefile
+}
+
+package() {
+  cd "$srcdir/$repo"
+  make PREFIX="$pkgdir/usr" LDCONFIG='' -j1 install 
+}
+
+
+

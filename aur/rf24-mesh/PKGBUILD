@@ -12,10 +12,11 @@ depends=('rf24-network')
 build() {
   cd "$srcdir/RF24Mesh-$pkgver"
   #./configure --driver=SPIDEV --prefix="$pkgdir/usr" --ldconfig=''
+  sed -i -e "s/@ldconfig/@\$(LDCONFIG)/g" Makefile
 }
 
 package() {
   cd "$srcdir/RF24Mesh-$pkgver"
-  make -j1 install
+  make PREFIX="$pkgdir/usr" LDCONFIG='' -j1 install 
 }
 
