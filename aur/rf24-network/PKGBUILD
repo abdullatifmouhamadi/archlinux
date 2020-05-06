@@ -13,11 +13,12 @@ sha256sums=('1b38748d3b23f04d7ed5cb935eb57441085c6e2d6d51c61e2d2c77a9a227dbc9')
 build() {
   cd "$srcdir/RF24Network-$pkgver"
   #./configure --driver=SPIDEV --prefix="$pkgdir/usr" --ldconfig=''
+  sed -i -e "s/@ldconfig/@\$(LDCONFIG)/g" Makefile
 }
 
 package() {
   cd "$srcdir/RF24Network-$pkgver"
-  make -j1 install
+  make PREFIX="$pkgdir/usr" LDCONFIG='' -j1 install 
 }
 
 
