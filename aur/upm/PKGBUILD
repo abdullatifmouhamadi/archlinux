@@ -1,0 +1,30 @@
+# Maintainer: ABDULLATIF Mouhamadi <bourou01dev@gmail.com>
+pkgname=upm
+pkgver=2.0.0
+pkgrel=1
+pkgdesc="Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
+arch=('any')
+url=""
+license=('MIT')
+source=("https://github.com/eclipse/upm/archive/v${pkgver}.tar.gz")
+md5sums=('9a514218e744769ff4ed392f008e6ba1')
+
+build() {
+  cd "$srcdir/upm-${pkgver}"
+	mkdir build
+	cd build
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+				-DBUILDSWIG=ON \
+				-DBUILDSWIGPYTHON=ON \
+				-DBUILDSWIGNODE=OFF ../
+	make -j
+}
+
+
+
+package() {
+  install -d "${pkgdir}/usr/bin"
+  cp "upm-${pkgver}" "${pkgdir}/usr/bin/"
+}
+
+
