@@ -12,12 +12,14 @@ yay -S jlink-software-and-documentation
 
 # installation
 ```
-unzip en.stm32cubeprog.zip
-./SetupSTM32CubeProgrammer-2.2.0.linux
-
+unzip en.stm32cubeprog_v2-4-0.zip
+./SetupSTM32CubeProgrammer-2.4.0.linux
 
 
 export PATH=/home/abdullatif/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
+source .bashrc
+
+
 
 
 cd /home/abdullatif/STMicroelectronics/STM32Cube/STM32CubeProgrammer/Drivers/rules
