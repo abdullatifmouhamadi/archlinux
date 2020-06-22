@@ -17,7 +17,7 @@ unzip en.stm32cubeprog_v2-4-0.zip
 
 
 export PATH=/home/abdullatif/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
-source .bashrc
+source ~/.bashrc
 
 
 
