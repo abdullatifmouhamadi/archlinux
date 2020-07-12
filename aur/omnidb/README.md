@@ -1,6 +1,7 @@
 
 cd /srv/http/
 sudo mkdir OmniDB
+sudo chown -R abdullatif:wheel OmniDB/
 cd OmniDB
 
 git clone -b 2.17.0 https://github.com/OmniDB/OmniDB.git
@@ -20,7 +21,7 @@ pip install -r requirements.txt
 
 sudo chown -R abdullatif:wheel OmniDB/
 
-/etc/systemd/system/
+/etc/systemd/system/omnidb.service
 
 systemctl daemon-reload
 
