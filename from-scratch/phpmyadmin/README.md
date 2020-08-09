@@ -9,7 +9,7 @@ https://wiki.archlinux.fr/LAMP
 "ne pas oublier mysqli"
 ```
 
-pacman -S php-fpm phpmyadmin mariadb
+pacman -S php-fpm phpmyadmin mariadb nginx
 ```
 
 /usr/share/webapps/phpMyAdmin/config.inc.php
